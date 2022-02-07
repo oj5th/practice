@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Setup RSPEC
 
-Things you may want to cover:
+```
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+end
 
-* Ruby version
+rails generate rspec:install
 
-* System dependencies
+Setup FactoryBot
+- Add file: spec/support/factory_bot.rb
+- Add the following code:
 
-* Configuration
+  RSpec.configure do |config|
+    config.include FactoryBot::Syntax::Methods
+  end
 
-* Database creation
+- Add the following code on the very top in this file: src/spec/rails_helper.rb
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+  require 'support/factory_bot'
+```
