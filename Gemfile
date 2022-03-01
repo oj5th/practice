@@ -27,6 +27,12 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'grape', '~> 1.5'
 
+gem 'grape-swagger'
+gem 'grape-swagger-entity'
+
+gem 'rswag-api'
+gem 'rswag-ui'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -38,6 +44,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'rswag-specs'
 end
 
 group :development do

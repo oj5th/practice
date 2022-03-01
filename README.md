@@ -22,3 +22,5 @@ Setup FactoryBot
 
   require 'support/factory_bot'
 ```
+
+Check https://github.com/rswag/rswag for swagger.

@@ -4,13 +4,22 @@ module Root
       format :json
 
       namespace :book do
+        desc 'Add Book Record',
+          success: [
+            { code: 201, message: 'Successfully add book record.' }
+          ],
+          failure: [
+            { code: 400, message: 'Bad Request' },
+            { code: 408, message: 'Request Timeout' },
+            { code: 500, message: 'Internal Server Error' },
+            { code: 503, message: 'Service Unavailable' }
+          ]
         params do
           requires :title, type: String, desc: 'Book Title'
         end
 
         post do
-          binding.pry
-          # declared_params
+          declared_params
           # Book.create(title: params[:title])
         end
       end
