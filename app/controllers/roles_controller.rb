@@ -9,6 +9,11 @@ class RolesController < ApplicationController
 
   # GET /roles/1 or /roles/1.json
   def show
+    if @role.users.empty?
+      @associated_users = 'None'
+    else
+      @associated_users = @role.users.map(&:name).join(', ')
+    end
   end
 
   # GET /roles/new
