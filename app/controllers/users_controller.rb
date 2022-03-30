@@ -37,8 +37,26 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1 or /users/1.json
   def update
+    # That’s ok, but if we try and edit an existing user (e.g. http://localhost:3000/admin/users/1/edit), then we are prompted to set a new password every time we want to update something. This is not ideal.
+    #
+    # To get around this, we can take advantage of Devise’s update_without_password method.
+    #
+    # Alter the update method in UsersController as shown (making sure to include the protected method needs_password?):
+
     respond_to do |format|
-      if @user.update(user_params)
+      if user_params[:password].blank?
+        user_params.delete(:password)
+        user_params.delete(:password_confirmation)
+      end
+
+      successfully_updated =
+        if needs_password?(@user, user_params)
+          @user.update(user_params)
+        else
+          @user.update_without_password(user_params)
+        end
+
+      if successfully_updated
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -66,6 +84,16 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :role_id)
+      params.require(:user).permit(
+        :email,
+        :password,
+        :password_confirmation,
+        :name,
+        :role_id
+      )
+    end
+
+    def needs_password?(_user, params)
+      params[:password].present?
     end
 end
