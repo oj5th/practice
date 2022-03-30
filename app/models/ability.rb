@@ -7,8 +7,17 @@ class Ability
     user ||= User.new # Guest user
     if user.admin?
       can :manage, :all
-    else
-      can :read, :all
+    elsif user.seller?
+      can :read, Item
+      can :ceate, Item
+      can :update, Item do |item|
+        item.try(:user) == user
+      end
+      can :destroy, Item do |item|
+        item.try(:user) == user
+      end
+    elsif user.regular?
+      can :read, Item
     end
   end
 end
