@@ -14,12 +14,12 @@ describe 'Book API' do
       }
 
       response '201', 'Successfully Added Book Record' do
-        let(:book) { { title: 'Ruby Programming for Beginners' } }
+        let(:book) { { title: 'string' } }
         run_test!
       end
 
-      response '422', 'invalid request' do
-        let(:book) { {  } }
+      response '400', 'Bad Request' do
+        let(:book) { { error: "title is missing" } }
         run_test!
       end
     end

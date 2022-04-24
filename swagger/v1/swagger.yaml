@@ -5,6 +5,23 @@ info:
   version: v1
 paths:
   "/api/v1/book":
+    get:
+      summary: List Books
+      tags:
+      - ListBooks
+      parameters: []
+      responses:
+        '200':
+          description: Successfully List Books
+        '422':
+          description: invalid request
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+              required:
     post:
       summary: Add Book Record
       tags:
