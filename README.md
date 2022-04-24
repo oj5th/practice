@@ -1,24 +1,15 @@
 # README
 
-* Setup RSPEC
+* Steps (Reference: https://guides.railsgirls.com/backend-with-active-admin, https://github.com/activeadmin/activeadmin/blob/master/docs/0-installation.md)
 
-```
-group :development, :test do
-  gem 'rspec-rails'
-  gem 'factory_bot_rails'
-end
+  1. Add gem:
+    ```
+      gem 'devise'
+      gem 'activeadmin'
+      gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+    ```
 
-rails generate rspec:install
-
-Setup FactoryBot
-- Add file: spec/support/factory_bot.rb
-- Add the following code:
-
-  RSpec.configure do |config|
-    config.include FactoryBot::Syntax::Methods
-  end
-
-- Add the following code on the very top in this file: src/spec/rails_helper.rb
-
-  require 'support/factory_bot'
-```
+  2. rails generate active_admin:install
+  3. AdminUser.create(:email => 'oliver@example.com', :password => 'password', :password_confirmation => 'password')
+  4. Login to localhost:3000/admin
+  5. 
