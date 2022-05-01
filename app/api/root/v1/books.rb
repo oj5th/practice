@@ -1,6 +1,7 @@
 module Root
   module V1
     class Books < Base::API
+      include Root::V1::Authentication
       format :json
 
       namespace :book do

@@ -33,6 +33,10 @@ gem 'grape-swagger-entity'
 gem 'rswag-api'
 gem 'rswag-ui'
 
+# Authentication
+gem 'devise'
+gem 'rack-cors', :require => 'rack/cors'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
