@@ -41,3 +41,5 @@ Trying devise and devise jwt (Source: https://enlear.academy/how-to-create-a-rai
     jwt.expiration_time = 15.day.to_i
   end
   ```
+12. When error on signup `ActionController::InvalidAuthenticityToken in Users::RegistrationsController#create` add the following on application_controller:
+  `protect_from_forgery prepend: true`
